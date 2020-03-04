@@ -1,3 +1,12 @@
+# KLEE info
+
+1. Setup as per [this](https://google.github.io/fuzzbench/getting-started/prerequisites/)
+2. running `make run-klee-libpng-1.2.56` should build and run everything for libpng
+
+NOTES
+A build.sh script with packge support would be quite nice for this
+
+
 # FuzzBench: Fuzzer Benchmarking As a Service
 
 FuzzBench is a free service that evaluates fuzzers on a wide variety of
