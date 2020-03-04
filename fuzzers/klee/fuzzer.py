@@ -49,12 +49,12 @@ def build():
 
     print('[post_build] Copying klee to $OUT directory')
     # Copy over honggfuzz's main fuzzing binary.
-    shutil.copy('/tmp/klee_build60stp/bin/klee', os.environ['OUT'])
+    shutil.copy('/tmp/klee_build60stp_z3/bin/klee', os.environ['OUT'])
     shutil.copy('/tmp/zlib/zlib-1.2.11/libz.bca', os.environ['OUT'])
     shutil.copytree('/tmp/llvm-60-install_O_ND_NA/lib', os.environ['OUT'] + '/lib')
     shutil.copytree('/tmp/minisat-install/lib', os.environ['OUT'] + '/lib1')
     shutil.copytree('/tmp/stp-2.3.3-install/lib', os.environ['OUT'] + '/lib2')
-    shutil.copytree('/tmp/klee_build60stp/', os.environ['OUT'] + '/klee_build60stp')
+    shutil.copytree('/tmp/klee_build60stp_z3/', os.environ['OUT'] + '/klee_build60stp_z3')
     subprocess.call(['ls', os.environ['OUT']])
     subprocess.call(['bash', '-c', 'find $OUT -executable -type f -exec file \'{}\' \; | grep ELF | cut -d: -f1 | xargs -n 1 extract-bc'])
 
@@ -68,7 +68,7 @@ def fuzz(input_corpus, output_corpus, target_binary):
     print('[run_fuzzer] Running target with honggfuzz')
     print(target_binary)
     os.environ['LD_LIBRARY_PATH']='/out/lib:/out/lib1:/out/lib2'
-    shutil.copytree('klee_build60stp', '/tmp/klee_build60stp')
+    shutil.copytree('klee_build60stp_z3', '/tmp/klee_build60stp_z3')
     subprocess.call([
         './klee', '-solver-backend=z3','-libc=uclibc',  '-posix-runtime', '-link-llvm-lib=libz.bca', target_binary + ".bc"
     ])
