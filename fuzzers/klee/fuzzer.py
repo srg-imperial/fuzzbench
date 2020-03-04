@@ -52,6 +52,7 @@ def build():
     shutil.copy('/tmp/klee_build60stp_z3/bin/klee', os.environ['OUT'])
     shutil.copy('/tmp/zlib/zlib-1.2.11/libz.bca', os.environ['OUT'])
     shutil.copytree('/tmp/llvm-60-install_O_ND_NA/lib', os.environ['OUT'] + '/lib')
+    shutil.copy('/tmp/z3-4.8.4-install/lib/libz3.so', os.environ['OUT'] + '/lib')
     shutil.copytree('/tmp/minisat-install/lib', os.environ['OUT'] + '/lib1')
     shutil.copytree('/tmp/stp-2.3.3-install/lib', os.environ['OUT'] + '/lib2')
     shutil.copytree('/tmp/klee_build60stp_z3/', os.environ['OUT'] + '/klee_build60stp_z3')
